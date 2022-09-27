@@ -26,6 +26,16 @@ app.get('/show', async (req, res) => {
     try {
         const showNote = await Note.find({})
         res.send(showNote)
+        var html = "";
+        show.forEach((element) => {
+          html += `
+              <div class="notes">
+                  <textarea cols="72" rows="7"  id="note-text"> ${element.text}</textarea>
+              </div>
+                  `
+            console.log(element.text);
+        })
+        document.getElementById("notes").innerHTML = html;
     } catch(e) {
         res.status(500).send(e);
     }
